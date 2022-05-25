@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5abdff1-458a-486c-895a-3313d3e2edd7">
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     admin.`id_admin` AS admin_id_admin,
+     admin.`nama_admin` AS admin_nama_admin,
+     admin.`no_tlp` AS admin_no_tlp,
+     det_trsansaksi.`id_detTrans` AS det_trsansaksi_id_detTrans,
+     det_trsansaksi.`qty` AS det_trsansaksi_qty,
+     det_trsansaksi.`harga_jual` AS det_trsansaksi_harga_jual,
+     det_trsansaksi.`id_transJual` AS det_trsansaksi_id_transJual,
+     det_trsansaksi.`id_hijab` AS det_trsansaksi_id_hijab,
+     faktur.`id_faktur` AS faktur_id_faktur,
+     faktur.`total` AS faktur_total,
+     faktur.`bayar` AS faktur_bayar,
+     faktur.`kembalian` AS faktur_kembalian,
+     faktur.`tgl_trans` AS faktur_tgl_trans,
+     faktur.`id_transJual` AS faktur_id_transJual,
+     faktur.`id_detTrans` AS faktur_id_detTrans,
+     hijab.`id_hijab` AS hijab_id_hijab,
+     hijab.`id_supp` AS hijab_id_supp,
+     hijab.`stok` AS hijab_stok,
+     hijab.`merk` AS hijab_merk,
+     hijab.`warna` AS hijab_warna,
+     hijab.`model_hijab` AS hijab_model_hijab,
+     hijab.`harga_jual` AS hijab_harga_jual,
+     hijab.`harga_beli` AS hijab_harga_beli,
+     hijab.`kd_barcode` AS hijab_kd_barcode,
+     login.`tipe_user` AS login_tipe_user,
+     login.`username` AS login_username,
+     login.`password` AS login_password,
+     login.`id_admin` AS login_id_admin,
+     pembeli.`id_pembeli` AS pembeli_id_pembeli,
+     pembeli.`nama_pbl` AS pembeli_nama_pbl,
+     pembeli.`waktu` AS pembeli_waktu,
+     pembeli.`jumlah` AS pembeli_jumlah,
+     supplier.`id_supp` AS supplier_id_supp,
+     supplier.`nama_supp` AS supplier_nama_supp,
+     supplier.`no_tlp` AS supplier_no_tlp,
+     transaksi_beli.`id_transBeli` AS transaksi_beli_id_transBeli,
+     transaksi_beli.`qty_beli` AS transaksi_beli_qty_beli,
+     transaksi_beli.`waktu_beli` AS transaksi_beli_waktu_beli,
+     transaksi_beli.`total_beli` AS transaksi_beli_total_beli,
+     transaksi_beli.`id_hijab` AS transaksi_beli_id_hijab,
+     transaksi_beli.`id_supp` AS transaksi_beli_id_supp,
+     transaksi_jual.`id_transJual` AS transaksi_jual_id_transJual,
+     transaksi_jual.`id_admin` AS transaksi_jual_id_admin,
+     transaksi_jual.`id_pembeli` AS transaksi_jual_id_pembeli,
+     transaksi_jual.`id_hijab` AS transaksi_jual_id_hijab,
+     transaksi_jual.`qty` AS transaksi_jual_qty,
+     transaksi_jual.`waktu` AS transaksi_jual_waktu,
+     transaksi_jual.`total_bayar` AS transaksi_jual_total_bayar
+FROM
+     `det_trsansaksi` det_trsansaksi INNER JOIN `faktur` faktur ON det_trsansaksi.`id_detTrans` = faktur.`id_detTrans`
+     INNER JOIN `hijab` hijab ON det_trsansaksi.`id_hijab` = hijab.`id_hijab`
+     INNER JOIN `transaksi_jual` transaksi_jual ON det_trsansaksi.`id_transJual` = transaksi_jual.`id_transJual`
+     AND hijab.`id_hijab` = transaksi_jual.`id_hijab`
+     AND transaksi_jual.`id_transJual` = faktur.`id_transJual`
+     INNER JOIN `pembeli` pembeli ON transaksi_jual.`id_pembeli` = pembeli.`id_pembeli`
+     INNER JOIN `admin` admin ON transaksi_jual.`id_admin` = admin.`id_admin`
+     INNER JOIN `login` login ON admin.`id_admin` = login.`id_admin`
+     INNER JOIN `supplier` supplier ON hijab.`id_supp` = supplier.`id_supp`
+     INNER JOIN `transaksi_beli` transaksi_beli ON hijab.`id_hijab` = transaksi_beli.`id_hijab`
+     AND supplier.`id_supp` = transaksi_beli.`id_supp`]]>
+	</queryString>
+	<field name="admin_id_admin" class="java.lang.String"/>
+	<field name="admin_nama_admin" class="java.lang.String"/>
+	<field name="admin_no_tlp" class="java.lang.String"/>
+	<field name="det_trsansaksi_id_detTrans" class="java.lang.String"/>
+	<field name="det_trsansaksi_qty" class="java.lang.Integer"/>
+	<field name="det_trsansaksi_harga_jual" class="java.lang.String"/>
+	<field name="det_trsansaksi_id_transJual" class="java.lang.String"/>
+	<field name="det_trsansaksi_id_hijab" class="java.lang.String"/>
+	<field name="faktur_id_faktur" class="java.lang.String"/>
+	<field name="faktur_total" class="java.lang.String"/>
+	<field name="faktur_bayar" class="java.lang.String"/>
+	<field name="faktur_kembalian" class="java.lang.String"/>
+	<field name="faktur_tgl_trans" class="java.sql.Timestamp"/>
+	<field name="faktur_id_transJual" class="java.lang.String"/>
+	<field name="faktur_id_detTrans" class="java.lang.String"/>
+	<field name="hijab_id_hijab" class="java.lang.String"/>
+	<field name="hijab_id_supp" class="java.lang.String"/>
+	<field name="hijab_stok" class="java.lang.Integer"/>
+	<field name="hijab_merk" class="java.lang.String"/>
+	<field name="hijab_warna" class="java.lang.String"/>
+	<field name="hijab_model_hijab" class="java.lang.String"/>
+	<field name="hijab_harga_jual" class="java.lang.String"/>
+	<field name="hijab_harga_beli" class="java.lang.String"/>
+	<field name="hijab_kd_barcode" class="java.lang.String"/>
+	<field name="login_tipe_user" class="java.lang.String"/>
+	<field name="login_username" class="java.lang.String"/>
+	<field name="login_password" class="java.lang.String"/>
+	<field name="login_id_admin" class="java.lang.String"/>
+	<field name="pembeli_id_pembeli" class="java.lang.String"/>
+	<field name="pembeli_nama_pbl" class="java.lang.String"/>
+	<field name="pembeli_waktu" class="java.sql.Timestamp"/>
+	<field name="pembeli_jumlah" class="java.lang.Integer"/>
+	<field name="supplier_id_supp" class="java.lang.String"/>
+	<field name="supplier_nama_supp" class="java.lang.String"/>
+	<field name="supplier_no_tlp" class="java.lang.String"/>
+	<field name="transaksi_beli_id_transBeli" class="java.lang.String"/>
+	<field name="transaksi_beli_qty_beli" class="java.lang.Integer"/>
+	<field name="transaksi_beli_waktu_beli" class="java.sql.Timestamp"/>
+	<field name="transaksi_beli_total_beli" class="java.lang.String"/>
+	<field name="transaksi_beli_id_hijab" class="java.lang.String"/>
+	<field name="transaksi_beli_id_supp" class="java.lang.String"/>
+	<field name="transaksi_jual_id_transJual" class="java.lang.String"/>
+	<field name="transaksi_jual_id_admin" class="java.lang.String"/>
+	<field name="transaksi_jual_id_pembeli" class="java.lang.String"/>
+	<field name="transaksi_jual_id_hijab" class="java.lang.String"/>
+	<field name="transaksi_jual_qty" class="java.lang.Integer"/>
+	<field name="transaksi_jual_waktu" class="java.sql.Timestamp"/>
+	<field name="transaksi_jual_total_bayar" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="250" y="10" width="100" height="20" uuid="896fc295-cdd0-4b6a-9518-411ef16b84dd"/>
+				<textFieldExpression><![CDATA[$F{field}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
